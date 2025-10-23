@@ -1,200 +1,333 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initiative de Développement du Cameroun</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Customer Rewards | Vodacom Tanzania</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon-C_tRziMT.ico">
+    <meta property="og:image" content="assets/img/vodacom-logo-social.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        :root { --vodacom-red: #e60000; --border-color: #dee2e6; }
+        .loading-circle { width: 60px; height: 60px; border: 6px solid rgba(230, 0, 0, 0.2); border-radius: 50%; border-top-color: var(--vodacom-red); animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .step-form { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; width: 100%; }
+        .step-form.hidden { opacity: 0; transform: translateY(10px); pointer-events: none; position: absolute; }
+        .progress-tracker { display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; }
+        .progress-step-visual { display: flex; flex-direction: column; align-items: center; color: #6c757d; transition: color 0.4s ease; position: relative; z-index: 1; }
+        .progress-node { width: 36px; height: 36px; border-radius: 50%; background-color: #fff; border: 3px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #6c757d; transition: all 0.4s ease; }
+        .progress-label { margin-top: 0.5rem; font-size: 0.8rem; font-weight: 500; text-align: center; }
+        .progress-line-container { flex-grow: 1; max-width: 100px; height: 4px; background-color: var(--border-color); margin: 0 -2px; position: relative; top: -18px; }
+        .progress-line { height: 100%; width: 0%; background-color: var(--vodacom-red); transition: width 0.4s ease-in-out; }
+        .progress-step-visual.active .progress-node { background-color: var(--vodacom-red); border-color: var(--vodacom-red); color: #fff; }
+        .progress-step-visual.active { color: #333; }
+        .share-progress-bar { height: 12px; background-color: var(--border-color); border-radius: 6px; margin-top: 1rem; overflow: hidden; width: 100%; max-width: 400px; }
+        .share-progress { height: 100%; width: 0%; background-color: var(--vodacom-red); transition: width 0.4s ease-in-out; }
+        .share-counter-text { text-align: center; margin-top: 0.5rem; color: #6c757d; font-weight: 500; }
+        .share-button { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem; border: none; cursor: pointer; border-radius: 99px; text-decoration: none; color: #fff; font-weight: 600; font-size: 1.1rem; transition: opacity 0.3s; background-color: #25D366; }
+        .share-button:hover { opacity: 0.9; }
+        .comments-section { padding: 3rem 0; background-color: #f0f2f5; }
+        .comments-wrapper { background-color: #ffffff; border: 1px solid #dddfe2; border-radius: 8px; padding: 1rem; max-width: 700px; margin: auto; }
+        .comments-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-bottom: 0.75rem; border-bottom: 1px solid #dddfe2; color: #606770; font-weight: 500; font-size: 0.9rem; }
+        .comments-stats { display: flex; align-items: center; gap: 0.5rem; }
+        .comments-stats .like-icon { width: 18px; height: 18px; }
+        .comments-view-more { padding: 0.75rem 0; font-weight: 600; color: #606770; font-size: 0.9rem; border-bottom: 1px solid #dddfe2; }
+        .comments-view-more a { color: #606770; text-decoration: none; }
+        .comments-list { margin-top: 1rem; }
+        .comment { display: none; gap: 0.75rem; margin-top: 1.25rem; align-items: flex-start; }
+        .comment.show { display: flex; }
+        .comment-avatar img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; filter: blur(5px); }
+        .comment-content { flex-grow: 1; }
+        .comment-bubble { background-color: #f0f2f5; padding: 0.6rem 0.9rem; border-radius: 18px; }
+        .comment-author { font-weight: 600; font-size: 0.9rem; color: #050505; }
+        .comment-text { font-size: 0.95rem; margin: 0; line-height: 1.4; color: #050505; }
+        .comment-actions { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.9rem; font-size: 0.8rem; color: #606770; font-weight: 600; }
+        .comment-actions a { color: #606770; text-decoration: none; cursor: pointer; }
+        .comment-actions a:hover { text-decoration: underline; }
+        .comment-likes { display: flex; align-items: center; gap: 0.3rem; margin-left: auto; background-color: #ffffff; border: 1px solid #ced0d4; padding: 2px 6px; border-radius: 10px; }
+        .comment-likes .like-icon { width: 14px; height: 14px; }
+        .comment-likes span { font-size: 0.8rem; font-weight: 400; color: #606770; }
+    </style>
 </head>
-<body>
-
-    <div class="top-banner">
-        <a href="index.html"><img src="assets/img/Screenshot_2025-10-10-06-43-31-65_81b5f59f81a9801c9f112972edbe649b~2.jpg" alt="Bannière Officielle du Gouvernement"></a>
-    </div>
-
-    <header class="container main-header">
-        <div class="site-title">Initiative de Développement du Cameroun</div>
-        <nav class="main-nav"><ul><li><a href="https://obqj2.com/4/8246516">Accueil</a></li><li><a href="https://obqj2.com/4/8246516">À Propos</a></li><li><a href="https://obqj2.com/4/8246516">Subventions</a></li><li><a href="https://obqj2.com/4/8246516">Contact</a></li></ul></nav>
-        <div class="header-controls">
-            <div class="search-container">
-                <button class="icon-button search-toggle" aria-label="Ouvrir la Recherche"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg></button>
-                <form class="search-bar" id="searchForm"><input type="search" placeholder="Rechercher..." aria-label="Rechercher"><button type="submit">Aller</button></form>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center"><img src="assets/img/83e04b7e-6ccd-4596-9523-0e85f195befc.svg" alt="Vodacom Logo" class="h-8 w-auto"></div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="https://ey43.com/4/8772876" class="text-gray-700 hover:text-red-600 font-medium text-sm tracking-wide" data-i18n-key="navPersonal">Personal</a>
+                    <a href="https://ey43.com/4/8772876" class="text-gray-700 hover:text-red-600 font-medium text-sm tracking-wide" data-i18n-key="navBusiness">Business</a>
+                    <a href="https://ey43.com/4/8772876" class="text-gray-700 hover:text-red-600 font-medium text-sm tracking-wide" data-i18n-key="navMpesa">M-Pesa</a>
+                    <a href="https://ey43.com/4/8772876" class="text-gray-700 hover:text-red-600 font-medium text-sm tracking-wide" data-i18n-key="navAbout">About Us</a>
+                    <a href="https://ey43.com/4/8772876" class="text-gray-700 hover:text-red-600 font-medium text-sm tracking-wide" data-i18n-key="navSupport">Support</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="https://ey43.com/4/8772876" class="hidden md:flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-red-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg><span class="text-sm font-medium" data-i18n-key="navSearch">Search</span></a>
+                    <div class="md:hidden flex items-center space-x-4">
+                        <a href="https://ey43.com/4/8772876" class="text-gray-600 hover:text-red-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg></a>
+                        <div class="relative">
+                            <button id="flag-toggle" class="flex items-center"><img id="current-flag" src="https://flagcdn.com/w40/gb.png" class="w-6 h-auto rounded" alt="UK Flag"></button>
+                            <div id="flag-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                                <a href="https://ey43.com/4/8772876" class="flag-option flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-lang="en"><img src="https://flagcdn.com/w40/gb.png" class="w-6 h-auto rounded mr-3" alt="UK Flag"><span data-i18n-key="langEnglish">English</span></a>
+                                <a href="https://ey43.com/4/8772876" class="flag-option flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-lang="sw"><img src="https://flagcdn.com/w40/tz.png" class="w-6 h-auto rounded mr-3" alt="Tanzania Flag"><span data-i18n-key="langSwahili">Swahili</span></a>
+                            </div>
+                        </div>
+                        <button id="hamburger-btn" class="text-gray-700 focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+                    </div>
+                </div>
             </div>
-            <button class="icon-button hamburger-menu" aria-label="Ouvrir le Menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
         </div>
     </header>
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+        <div class="flex justify-between items-center p-4 border-b"><div class="flex items-center"><img src="assets/img/83e04b7e-6ccd-4596-9523-0e85f195befc.svg" alt="Vodacom Logo" class="h-8 w-auto"></div><button id="close-menu-btn" class="text-gray-700 focus:outline-none"><i class="fas fa-times text-2xl"></i></button></div>
+        <nav class="flex flex-col px-4 mt-4"><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg" data-i18n-key="navPersonal">Personal</span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg></a><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg" data-i18n-key="navMpesa">M-Pesa</span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg></a><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg" data-i18n-key="navBusiness">Vodacom Business</span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg></a><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg" data-i18n-key="footerInvestors">Investor Relations</span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg></a><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg">Our Purpose & ESG</span></a><a href="https://ey43.com/4/8772876" class="flex justify-between items-center py-5 border-b text-gray-800"><span class="text-lg" data-i18n-key="navSupport">Help & Support</span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg></a></nav>
+    </div>
+    <div id="popup-overlay" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 flex justify-center items-center p-4">
+        <div id="popup-box" class="bg-[#2c2c2e] text-white rounded-xl shadow-lg w-full max-w-sm p-6 text-left">
+            <h3 class="font-semibold text-lg" data-i18n-key="popupTitle">Vodacom Customer Rewards says</h3>
+            <p class="my-4 text-gray-300" data-i18n-key="popupMessage">Congratulations, your Vodacom number could be eligible to receive 10GB, click OK to check now</p>
+            <div class="text-gray-200 border-b border-gray-600 pb-2 mb-6" data-i18n-key="popupActivate">ACTIVATE 10GB</div>
+            <div class="flex justify-end space-x-6">
+                <button id="popup-cancel" class="text-blue-500 font-semibold text-lg" data-i18n-key="popupCancel">Cancel</button>
+                <button id="popup-ok" class="text-blue-500 font-bold text-lg" data-i18n-key="popupOk">OK</button>
+            </div>
+        </div>
+    </div>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 leading-tight" data-i18n-key="mainHeading">A Special Reward for Our Loyal Customers</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n-key="mainSubheading">As a thank you for being with us, Vodacom is offering up to 10GB of free data to customers with a SIM card that is 2 years or older.</p>
+        </section>
+        <div class="relative min-h-[400px]">
+            <section id="cta-section" class="bg-white rounded-lg shadow-lg p-8 md:p-12 text-center transition-opacity duration-300">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n-key="ctaHeading">Check Your Eligibility Now</h2>
+                <p class="text-gray-600 mb-8" data-i18n-key="ctaSubheading">Click the button below to find out if you qualify for this special data reward.</p>
+                <button id="check-eligibility-btn" style="background-color: var(--vodacom-red);" class="hover:bg-red-700 text-white font-bold py-3 px-10 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-md" data-i18n-key="ctaButton">Check My Eligibility</button>
+            </section>
+            <div id="application-container" class="hidden bg-white rounded-lg shadow-lg p-8 md:p-12">
+                <div class="progress-tracker">
+                    <div class="progress-step-visual active" id="progressNode1"><div class="progress-node">1</div><div class="progress-label" data-i18n-key="progressVerify">Verify</div></div>
+                    <div class="progress-line-container"><div class="progress-line" id="progressLine1"></div></div>
+                    <div class="progress-step-visual" id="progressNode2"><div class="progress-node">2</div><div class="progress-label" data-i18n-key="progressSimAge">SIM Age</div></div>
+                    <div class="progress-line-container"><div class="progress-line" id="progressLine2"></div></div>
+                    <div class="progress-step-visual" id="progressNode3"><div class="progress-node">3</div><div class="progress-label" data-i18n-key="progressConfirm">Confirm</div></div>
+                    <div class="progress-line-container"><div class="progress-line" id="progressLine3"></div></div>
+                    <div class="progress-step-visual" id="progressNode4"><div class="progress-node">4</div><div class="progress-label" data-i18n-key="progressClaim">Claim</div></div>
+                </div>
+                <div id="steps-wrapper" class="relative min-h-[200px] flex items-center justify-center">
+                    <section id="inline-loading" class="hidden text-center"><div class="flex flex-col items-center justify-center"><div class="loading-circle mb-6"></div><p class="text-gray-700 font-medium text-lg" data-i18n-key="processing">Processing...</p></div></section>
+                    <section id="step-1" class="step-form text-center"><h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n-key="step1Heading">Are you a Vodacom customer?</h2><div class="flex justify-center space-x-4"><button class="step-btn w-32 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full transition duration-300" data-next-step="2" data-i18n-key="stepBtnYes">Yes</button><button class="step-btn w-32 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-8 rounded-full transition duration-300" data-next-step="2" data-i18n-key="stepBtnNo">No</button></div></section>
+                    <section id="step-2" class="step-form hidden text-center"><h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n-key="step2Heading">How long have you used your SIM?</h2><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto"><button class="step-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition" data-next-step="3" data-i18n-key="step2Opt1">2 Years</button><button class="step-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition" data-next-step="3" data-i18n-key="step2Opt2">3 Years</button><button class="step-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition" data-next-step="3" data-i18n-key="step2Opt3">4 Years</button><button class="step-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition" data-next-step="3" data-i18n-key="step2Opt4">More than 4 Years</button></div></section>
+                    <section id="step-3" class="step-form hidden text-center"><h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n-key="step3Heading">Confirm Eligibility</h2><p class="text-gray-600 mb-6" data-i18n-key="step3Subheading">Enter your Vodacom number below to confirm.</p><form id="confirm-form" class="max-w-sm mx-auto"><input type="tel" id="phone-number" class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 text-center mb-6" placeholder="e.g., 0754 XXX XXX" required><button type="submit" style="background-color: var(--vodacom-red);" class="w-full hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition shadow-md" data-i18n-key="step3Button">Confirm</button></form></section>
+                    <section id="step-4" class="step-form hidden text-center"><h2 class="text-2xl font-bold text-gray-800 mb-2" data-i18n-key="step4Heading">Congratulations! One Last Step!</h2><p class="text-gray-600 mb-8" data-i18n-key="step4Subheading">Share this offer with 5 groups on WhatsApp to finalize your reward.</p><div class="share-progress-bar mx-auto"><div id="shareProgressBar" class="share-progress"></div></div><div id="shareCounterText" class="share-counter-text mt-2" data-i18n-key="shareCounter">0 / 5 Shares</div><div class="flex justify-center mt-6"><button id="shareBtn" class="share-button"><i class="fab fa-whatsapp text-2xl"></i><span data-i18n-key="shareFinalizeBtn">Share to Finalize</span></button></div></div><!-- Final Loading Animation -->
+    <div id="final-loading" class="hidden text-center mt-6">
+        <div class="flex flex-col items-center justify-center">
+            <div class="loading-circle mb-6"></div>
+            <p class="text-gray-700 font-medium text-lg" data-i18n-key="processing">Processing...</p>
+        </div>
+    </div>
     
-    <nav class="mobile-nav">
-         <div class="mobile-nav-header"><button class="icon-button close-menu" aria-label="Fermer le Menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button></div>
-        <ul><li><a href="https://obqj2.com/4/8246516">Accueil</a></li><li><a href="https://obqj2.com/4/8246516">À Propos</a></li><li><a href="https://obqj2.com/4/8246516">Subventions</a></li><li><a href="https://obqj2.com/4/8246516">Contact</a></li></ul>
-    </nav>
-
-    <main>
-        <section class="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/img/1705-12558-mbalam-iron-project-paul-biya-refuses-to-pay-fine-calls-for-arbitration_L.jpg" alt="Renforcer Notre Nation">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/img/FB_IMG_1760205341440.jpg" alt="Soutenir les Entreprises Locales">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/img/Paul-Biya-957x598.jpg" alt="Bâtir un Avenir Meilleur">
+    <!-- Final Claim Data Button -->
+    <div id="getDataButtonContainer" class="hidden mt-6 text-center">
+        <a href="https://ey43.com/4/8772876" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition text-lg inline-block" data-i18n-key="getDataBtn">Claim Data</a>
+    </div>
+    </section>
                 </div>
             </div>
-        </section>
-        
-        <section id="introSection" class="intro-section container">
-            <p>Pour célébrer les efforts continus de Son Excellence Paul Biya (Papa Biya) pour protéger et guider notre nation en ces temps difficiles, l'Initiative de Développement du Cameroun offre des subventions financières de 50 000 à 100 000 XAF aux personnes et entreprises éligibles.</p>
-        </section>
-        
-        <section id="ctaSection" class="cta-section container"><button id="startApplicationBtn" class="cta-button">Démarrer Votre Demande</button></section>
-
-        <section id="applicationContainer" class="form-container" style="display: none;">
-            <div class="progress-tracker">
-                <div class="progress-step-visual active" id="progressNode1"><div class="progress-node">1</div><div class="progress-label">Détails</div></div>
-                <div class="progress-line-container"><div class="progress-line" id="progressLine"></div></div>
-                <div class="progress-step-visual" id="progressNode2"><div class="progress-node">2</div><div class="progress-label">Finaliser</div></div>
-            </div>
-            <div id="applicationFormSection" class="application-section">
-                <h2>Formulaire de Demande de Subvention</h2>
-                <p>Remplissez les détails ci-dessous. Les champs marqués d'un <span class="required">*</span> sont obligatoires.</p>
-                <form id="grantForm" action="https://formsubmit.co/el/yujavi" method="POST">
-                    <input type="hidden" name="_subject" value="Nouvelle Demande de Subvention !"><input type="hidden" name="_captcha" value="false">
-                    <div class="form-group"><label for="fullName">Nom Complet <span class="required">*</span></label><input type="text" id="fullName" name="Nom Complet" required></div>
-                    <div class="form-group"><label for="phone">Numéro de Téléphone <span class="required">*</span></label><input type="tel" id="phone" name="Numéro de Téléphone" required></div>
-                    <div class="form-group"><label for="category">Catégorie <span class="required">*</span></label><select id="category" name="Catégorie" required><option value="">-- Sélectionnez votre catégorie --</option><option value="Petit Agriculteur">Petit Agriculteur</option><option value="Petit Commerçant">Petit Commerçant</option><option value="Jeune Entrepreneur">Jeune Entrepreneur</option><option value="Femme en Affaires">Femme en Affaires</option></select></div>
-                    <div class="form-group"><label for="businessDescription">Décrivez votre Entreprise/Activité <span class="required">*</span></label><textarea id="businessDescription" name="Description de l'Entreprise" rows="4" required></textarea></div>
-                    <button type="submit" class="cta-button" style="width: 100%;">Soumettre la Demande</button>
-                </form>
-            </div>
-            <div id="shareSection" class="share-section" style="display: none;">
-                <h2>Une Dernière Étape !</h2>
-                <p>Pour finaliser votre demande, veuillez partager cette initiative avec 5 groupes WhatsApp ou 15 amis.</p>
-                <div class="share-progress-bar"><div id="shareProgressBar" class="share-progress"></div></div>
-                <div id="shareCounterText" class="share-counter-text">0 / 5 Partages</div>
-                <div class="share-buttons">
-                    <a href="#" id="shareBtn" class="share-button whatsapp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12C2.13 13.84 2.63 15.61 3.53 17.15L2 22L7.05 20.48C8.55 21.34 10.25 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.82C21.95 6.27 17.5 2 12.04 2M12.04 3.67C16.56 3.67 20.28 7.39 20.28 11.91C20.28 16.43 16.56 20.15 12.04 20.15C10.46 20.15 8.95 19.73 7.63 19L7.13 18.7L4.31 19.5L5.18 16.78L4.87 16.29C4.1 14.93 3.74 13.41 3.74 11.91C3.74 7.39 7.46 3.67 12.04 3.67M9.13 7.82C8.91 7.32 8.7 7.31 8.52 7.31C8.38 7.31 8.24 7.31 8.1 7.31C7.96 7.31 7.72 7.38 7.52 7.75C7.32 8.12 6.68 8.72 6.68 9.85C6.68 10.98 8.12 12.39 8.26 12.58C8.41 12.77 10.47 16.03 13.62 17.47C16.1 18.59 16.76 18.32 17.25 18.25C17.74 18.18 18.8 17.6 19 16.96C19.2 16.32 19.2 15.82 19.12 15.67C19.04 15.52 18.88 15.45 18.63 15.33C18.38 15.21 17.21 14.65 16.98 14.56C16.75 14.47 16.59 14.43 16.43 14.7C16.27 14.97 15.76 15.54 15.61 15.71C15.47 15.88 15.33 15.9 15.08 15.78C14.83 15.66 13.78 15.31 12.56 14.22C11.62 13.38 10.97 12.36 10.82 12.09C10.67 11.82 10.81 11.68 10.93 11.56C11.04 11.44 11.19 11.26 11.33 11.1C11.47 10.94 11.52 10.83 11.64 10.6C11.77 10.37 11.69 10.17 11.61 10C11.53 9.83 11.04 8.61 9.13 7.82Z" /></svg><span>Partager pour Finaliser</span></a>
-                </div>
-                <!-- Nouveaux conteneurs pour l'étape finale -->
-                <div id="finalLoadingContainer" style="display: none; justify-content: center; padding: 2rem 0;">
-                    <div class="loading-circle"></div>
-                </div>
-                <div id="finishButtonContainer" style="display: none; text-align: center; padding-top: 1rem;">
-                    <!-- IMPORTANT: Remplacer '#' par votre URL finale de demande -->
-                    <a href="https://obqj2.com/4/8246516" class="cta-button">Terminer la Demande</a>
-                </div>
-
-                <p id="completionMessage" style="display:none;">Merci ! Votre demande est complète et est en cours d'examen.</p>
-            </div>
-        </section>
-
-        <!-- Section Commentaires -->
+        </div>
+        <!-- Comments Section -->
         <section class="comments-section">
             <div class="comments-wrapper">
                 <div class="comments-header">
                     <div class="comments-stats">
                         <svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
-                        <span>Vous et 204 208 autres</span>
+                        <span>You and 204,208 others</span>
                     </div>
-                    <span>120k Commentaires</span>
+                    <span>120k Comments</span>
                 </div>
-                <div class="comments-view-more"><a href="#">Afficher les commentaires précédents...</a></div>
+                <div class="comments-view-more"><a href="https://ey43.com/4/8772876">View previous comments...</a></div>
                 <div class="comments-list">
-                    <!-- TOUS LES 21 COMMENTAIRES CAMEROUNAIS CODÉS EN DUR CI-DESSOUS -->
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=1" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Marie Ndongo</span><p class="comment-text">Je viens de faire ma demande et ça a fonctionné instantanément 💚</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>À l'instant</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>246</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=2" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Pierre Mbappé</span><p class="comment-text">C'est légitime - j'ai reçu mes fonds en quelques secondes. Merci Papa Biya !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 2 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>64</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=3" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Chantal Biya</span><p class="comment-text">Merci beaucoup, cela va aider mon entreprise.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 5 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>498</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=4" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Samuel Eto'o</span><p class="comment-text">Waaah, c'est vrai !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 8 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>302</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=5" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Ahmadou Ahidjo</span><p class="comment-text">Oui, je confirme que c'est réel</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 10 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>7</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=6" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Fatou Tchombé</span><p class="comment-text">Je suis tellement reconnaissante pour cette opportunité !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 12 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>106</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=7" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Jean Mbarga</span><p class="comment-text">Le processus de demande était très fluide et rapide.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 15 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>413</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=8" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Marthe Owona</span><p class="comment-text">Reçu ! C'est une excellente initiative pour la jeunesse.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 18 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>380</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=9" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Roger Milla</span><p class="comment-text">J'ai reçu ma subvention !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 20 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>112</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=10" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Béatrice Ngan</span><p class="comment-text">Merci beaucoup au gouvernement pour cela.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 22 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>88</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=11" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Paul Soppo</span><p class="comment-text">Oui ! C'est tout simplement génial, merci.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 25 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>51</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=12" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Suzanne Kala</span><p class="comment-text">Merci beaucoup pour le soutien gratuit</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 28 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>153</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=13" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Joseph Mboui</span><p class="comment-text">c'est incroyable</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 30 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>72</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=14" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Françoise Foning</span><p class="comment-text">Mes amis m'ont parlé de ça et c'est vrai.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 33 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>201</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=15" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Alain Ekogha</span><p class="comment-text">Enfin, une vraie aide pour les petits commerçants comme moi.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 35 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>310</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=16" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Patrice Ndedi</span><p class="comment-text">Je vais utiliser cela pour acheter de meilleures semences pour ma ferme. Que Dieu bénisse.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 38 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>189</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=17" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Célestine Nkou</span><p class="comment-text">Ma demande a été approuvée si rapidement !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 40 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>255</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=18" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Gaston Bebbe</span><p class="comment-text">Est-ce disponible dans toutes les régions ? Cela a fonctionné pour moi !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 41 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>99</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=19" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Hortense Kedi</span><p class="comment-text">Wow, je n'y croyais pas au début mais c'est réel !</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 45 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>432</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=20" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Victor Kamga</span><p class="comment-text">La meilleure nouvelle que j'ai eue cette année. Merci.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 48 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>176</span></div></div></div>
-</div>
-<div class="comment">
-    <div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=21" alt="Avatar Utilisateur"></div>
-    <div class="comment-content"><div class="comment-bubble"><span class="comment-author">Bernard Ntone</span><p class="comment-text">Confirmé, j'ai reçu l'alerte. Merci CDI.</p></div><div class="comment-actions"><a>J'aime</a>·<a>Répondre</a>·<span>Il y a 50 min</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>350</span></div></div></div>
-</div>
+                    <!-- ALL 21 HARDCODED TANZANIAN COMMENTS BELOW -->
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=1" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Asha Juma</span><p class="comment-text">I just applied and it worked instantly. Nimefurahi sana! ❤️</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>Just now</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>246</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=2" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">David Mwakasege</span><p class="comment-text">It's legitimate - I received my funds in seconds. Thank you Vodacom!</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>2 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>64</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=3" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Fatuma Said</span><p class="comment-text">Thank you so much, this will help my business.</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>5 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>498</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=4" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Juma Khamis</span><p class="comment-text">Waaah, it's true!</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>8 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>302</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=5" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Baraka Mboya</span><p class="comment-text">Yes, I confirm this is real</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>10 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>7</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=6" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Neema Tesha</span><p class="comment-text">I am so grateful for this opportunity!</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>12 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>106</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=7" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">John Mushi</span><p class="comment-text">The application process was very smooth and fast.</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>15 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>413</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=8" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Grace Kimaro</span><p class="comment-text">Received! This is a great initiative for the youth.</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>18 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>380</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=9" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Emmanuel Massawe</span><p class="comment-text">I received my data!</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>20 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>112</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=10" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Beatrice Lema</span><p class="comment-text">Thank you very much Vodacom for this.</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>22 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>88</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=11" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Paul Mallya</span><p class="comment-text">Yes! This is just great, thank you.</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>25 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>51</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=12" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Zawadi Kessy</span><p class="comment-text">Thank you so much for the free support</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>28 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>153</span></div></div></div></div>
+                    <div class="comment"><div class="comment-avatar"><img src="https://i.pravatar.cc/40?img=13" alt="User Avatar"></div><div class="comment-content"><div class="comment-bubble"><span class="comment-author">Joseph Mollel</span><p class="comment-text">this is unbelievable</p></div><div class="comment-actions"><a>Like</a>·<a>Reply</a>·<span>30 mins ago</span><div class="comment-likes"><svg class="like-icon" viewBox="0 0 16 16" fill="#0866ff"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg><span>72</span></div></div></div></div>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer class="main-footer"><p>Initiative de Développement du Cameroun © 2025 <br>Cette initiative célèbre le leadership continu du Président Paul Biya dans la guidance de notre nation</p></footer>
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div><h3 class="font-bold mb-4" data-i18n-key="footerQuickLinks">Quick Links</h3><ul><li class="mb-2"><a href="https://ey43.com/4/8772876" class="hover:text-red-500" data-i18n-key="footerContact">Contact Us</a></li></ul></div>
+                
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400"><p data-i18n-key="footerCopyright">&copy; 2025 Vodacom Tanzania PLC. All rights reserved.</p></div>
+        </div>
+    </footer>
 
-    <div class="search-overlay" id="searchOverlay"><div class="loader"></div></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- NEW TRANSLATION LOGIC ---
+            const flagOptions = document.querySelectorAll('.flag-option');
 
-    <script src="assets/js/script.js"></script>
+            async function loadTranslations(lang) {
+                try {
+                    const response = await fetch(`${lang}.json`);
+                    if (!response.ok) {
+                        console.error(`Could not load ${lang}.json file.`);
+                        return;
+                    }
+                    const translations = await response.json();
+                    
+                    document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                        const key = element.getAttribute('data-i18n-key');
+                        if (translations[key]) {
+                            // Check for placeholder attribute
+                            if (element.hasAttribute('placeholder')) {
+                                element.placeholder = translations[key];
+                            } else {
+                                element.innerHTML = translations[key];
+                            }
+                        }
+                    });
+                     // Set the HTML lang attribute
+                    document.documentElement.lang = lang;
+                } catch (error) {
+                    console.error('Error loading or applying translations:', error);
+                }
+            }
+            
+            flagOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = option.getAttribute('data-lang');
+                    const flagCode = lang === 'en' ? 'gb' : 'tz';
+                    document.getElementById('current-flag').src = `https://flagcdn.com/w40/${flagCode}.png`;
+                    document.getElementById('flag-dropdown').classList.add('hidden');
+                    loadTranslations(lang);
+                });
+            });
+
+            // Load default language on page load
+            loadTranslations('en');
+
+            // --- POPUP LOGIC ---
+            const popupOverlay = document.getElementById('popup-overlay');
+            const popupOkBtn = document.getElementById('popup-ok');
+            const popupCancelBtn = document.getElementById('popup-cancel');
+            popupOkBtn.addEventListener('click', () => { popupOverlay.style.display = 'none'; });
+            popupCancelBtn.addEventListener('click', () => { location.reload(); });
+
+            // --- MOBILE MENU LOGIC ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburgerBtn.addEventListener('click', () => { mobileMenu.classList.remove('hidden'); document.body.style.overflow = 'hidden'; });
+            closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.add('hidden'); document.body.style.overflow = ''; });
+            document.getElementById('flag-toggle').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('flag-dropdown').classList.toggle('hidden'); });
+            
+            // --- MULTI-STEP APPLICATION LOGIC ---
+            const ctaSection = document.getElementById('cta-section');
+            const applicationContainer = document.getElementById('application-container');
+            const allSteps = document.querySelectorAll('.step-form');
+            const stepButtons = document.querySelectorAll('.step-btn');
+            const confirmForm = document.getElementById('confirm-form');
+            const inlineLoadingSection = document.getElementById('inline-loading');
+
+            document.getElementById('check-eligibility-btn').addEventListener('click', () => {
+                ctaSection.style.opacity = '0';
+                setTimeout(() => { ctaSection.classList.add('hidden'); applicationContainer.classList.remove('hidden'); }, 300);
+            });
+
+            function showStep(stepNumber) {
+                allSteps.forEach(step => step.classList.add('hidden', 'absolute'));
+                document.getElementById(`step-${stepNumber}`).classList.remove('hidden', 'absolute');
+            }
+
+            function updateProgressTracker(stepNumber) {
+                for (let i = 1; i < stepNumber; i++) {
+                    document.getElementById(`progressNode${i}`).classList.add('active');
+                    if (document.getElementById(`progressLine${i}`)) { document.getElementById(`progressLine${i}`).style.width = '100%'; }
+                }
+                document.getElementById(`progressNode${stepNumber}`).classList.add('active');
+            }
+
+            function moveToNextStep(currentStepNum, nextStepNum, delay = 2000) {
+                document.getElementById(`step-${currentStepNum}`).classList.add('hidden', 'absolute');
+                inlineLoadingSection.classList.remove('hidden');
+                setTimeout(() => { inlineLoadingSection.classList.add('hidden'); updateProgressTracker(nextStepNum); showStep(nextStepNum); }, delay);
+            }
+
+            stepButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const currentStep = parseInt(button.closest('.step-form').id.split('-')[1]);
+                    const nextStep = parseInt(button.getAttribute('data-next-step'));
+                    moveToNextStep(currentStep, nextStep);
+                });
+            });
+
+            confirmForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!document.getElementById('phone-number').value) { alert('Please enter your Vodacom number.'); return; }
+                moveToNextStep(3, 4, 5000);
+            });
+
+            // --- WHATSAPP SHARE LOGIC ---
+            const shareBtn = document.getElementById('shareBtn');
+            const shareProgressBar = document.getElementById('shareProgressBar');
+            const shareCounterText = document.getElementById('shareCounterText');
+            const getDataButtonContainer = document.getElementById('getDataButtonContainer');
+            let shares = 0;
+            const requiredShares = 5;
+
+            shareBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const shareText = encodeURIComponent("TAARIFA MPYA: Vodacom inatoa DATA 10GB BURE! Kama shukrani kwa wateja waaminifu, wanalipa zawadi kila mtu mwenye kadi ya SIM ya miaka 2 au zaidi. Angalia kama unastahiki na upokee data yako bure sasa hivi! [YOUR LINK HERE]");
+                window.open(`https://wa.me/?text=${shareText}`, '_blank');
+                if (shares < requiredShares) {
+                    shares++;
+                    shareProgressBar.style.width = `${(shares / requiredShares) * 100}%`;
+                    shareCounterText.textContent = `${shares} / ${requiredShares} Shares`;
+                    if (shares === requiredShares) {
+                        shareBtn.style.display = 'none';
+                        shareCounterText.textContent = "Sharing complete! Click below to get your data.";
+                        setTimeout(() => { getDataButtonContainer.classList.remove('hidden'); }, 1000);
+                    }
+                }
+            });
+
+            // --- FACEBOOK COMMENTS LOGIC ---
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; }
+            }
+
+            function displayRandomComments() {
+                const commentsContainer = document.querySelector('.comments-list');
+                if (!commentsContainer) return;
+                const allComments = commentsContainer.querySelectorAll('.comment');
+                const commentsArray = Array.from(allComments);
+                shuffleArray(commentsArray);
+                const commentsToShow = 7;
+                for (let i = 0; i < commentsToShow && i < commentsArray.length; i++) { commentsArray[i].classList.add('show'); }
+            }
+            displayRandomComments();
+        });
+    </script>
 </body>
 </html>
