@@ -289,28 +289,60 @@
             });
 
             // --- WHATSAPP SHARE LOGIC ---
-            const shareBtn = document.getElementById('shareBtn');
-            const shareProgressBar = document.getElementById('shareProgressBar');
-            const shareCounterText = document.getElementById('shareCounterText');
-            const getDataButtonContainer = document.getElementById('getDataButtonContainer');
-            let shares = 0;
-            const requiredShares = 5;
+const shareBtn = document.getElementById('shareBtn');
+const shareUiContainer = document.getElementById('share-ui-container');
+const finalLoading = document.getElementById('final-loading');
+const shareProgressBar = document.getElementById('shareProgressBar');
+const shareCounterText = document.getElementById('shareCounterText');
+const getDataButtonContainer = document.getElementById('getDataButtonContainer');
+let shares = 0;
+const requiredShares = 5;
 
-            shareBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const shareText = encodeURIComponent("TAARIFA MPYA: Vodacom inatoa DATA 10GB BURE! Kama shukrani kwa wateja waaminifu, wanalipa zawadi kila mtu mwenye kadi ya SIM ya miaka 2 au zaidi. Angalia kama unastahiki na upokee data yako bure sasa hivi! [YOUR LINK HERE]");
-                window.open(`https://wa.me/?text=${shareText}`, '_blank');
-                if (shares < requiredShares) {
-                    shares++;
-                    shareProgressBar.style.width = `${(shares / requiredShares) * 100}%`;
-                    shareCounterText.textContent = `${shares} / ${requiredShares} Shares`;
-                    if (shares === requiredShares) {
-                        shareBtn.style.display = 'none';
-                        shareCounterText.textContent = "Sharing complete! Click below to get your data.";
-                        setTimeout(() => { getDataButtonContainer.classList.remove('hidden'); }, 1000);
-                    }
-                }
-            });
+shareBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Define translated share messages
+    const shareMessages = {
+        en: "NEW UPDATE: Vodacom is giving away 10GB of FREE DATA! As a thank you to loyal customers, they are rewarding anyone with a SIM card 2 years or older. Check if you're eligible and receive your free data now! https://icd-official.com",
+        sw: "TAARIFA MPYA: Vodacom inatoa DATA 10GB BURE! Kama shukrani kwa wateja waaminifu, wanalipa zawadi kila mtu mwenye kadi ya SIM ya miaka 2 au zaidi. Angalia kama unastahiki na upokee data yako bure sasa hivi! https://icd-official.com"
+    };
+    
+    // Determine the current language and select the correct message
+    const currentLang = document.documentElement.lang || 'en';
+    const shareText = encodeURIComponent(shareMessages[currentLang]);
+    
+    // Open the WhatsApp share link
+    window.open(`https://wa.me/?text=${shareText}`, '_blank');
+    
+    if (shares < requiredShares) {
+        shares++;
+        shareProgressBar.style.width = `${(shares / requiredShares) * 100}%`;
+        
+        // Update share counter text based on language
+        if (currentLang === 'sw') {
+            shareCounterText.textContent = `${shares} kati ya ${requiredShares} zimeshirikiwa`;
+        } else {
+            shareCounterText.textContent = `${shares} / ${requiredShares} Shares`;
+        }
+
+        if (shares === requiredShares) {
+            // Hide the initial sharing UI
+            shareUiContainer.classList.add('hidden');
+            
+            // Show the final loading animation
+            finalLoading.classList.remove('hidden');
+            
+            // Wait for 3 seconds
+            setTimeout(() => {
+                // Hide the loading animation
+                finalLoading.classList.add('hidden');
+                
+                // Show the final "Claim Data" button
+                getDataButtonContainer.classList.remove('hidden');
+            }, 3000);
+        }
+    }
+});
 
             // --- FACEBOOK COMMENTS LOGIC ---
             function shuffleArray(array) {
