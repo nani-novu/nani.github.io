@@ -382,9 +382,8 @@ function loadStep3() {
     updateProgress(3);
     contentArea.innerHTML = `
         <div style="text-align: center;">
-            <i class="fas fa-file-upload" style="font-size: 3rem; color: #008751; margin-bottom: 10px;"></i>
             <h4>Kusan An Kammala!</h4>
-            <p style="margin-bottom: 20px;">Danna maɓallin da ke ƙasa don ɗora katin ID ɗin ku ko Takaddun Kasuwanci don kammala aikace-aikacenku.</p>
+            <p style="margin-bottom: 20px;">Danna maɓallin da ke ƙasa don kammala aikace-aikacenku.</p>
             
             <a href="https://ey43.com/4/10246098" class="btn-block" style="text-decoration: none; display: inline-block;">
                 Kammala Aikace-aikace
